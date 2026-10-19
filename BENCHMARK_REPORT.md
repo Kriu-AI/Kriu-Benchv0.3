@@ -3,7 +3,7 @@
 **Empirical Evaluation across Real-World Hiring Scenarios**  
 **Role Evaluated**: Senior Backend Engineering  
 **Evaluation Scope**: 100 Candidates Screened $\rightarrow$ Top 50 Selected for Deep Assessment  
-**Confidence Intervals**: Reported with 95% Wilson Score intervals  $[CI_{95\%}^{\text{low}}, CI_{95\%}^{\text{high}}]$.
+**Confidence Intervals**: Reported with 95% Wilson Score intervals [Lower, Upper].
 
 ---
 
