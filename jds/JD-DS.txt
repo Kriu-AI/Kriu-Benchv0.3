@@ -1,0 +1,34 @@
+Senior Machine Learning Engineer - Personalization & Ranking Platform
+Netflix / E-Commerce Benchmark Equivalent | Los Gatos, CA / Remote | Full-Time
+
+About the Team & Mission
+The Personalization, Discovery & Machine Learning Platform organization designs the algorithms and real-time inference systems that shape the digital experience for more than 28 million daily active users. Every visual shelf, algorithmic search ranking, dynamic push notification, and product recommendation is powered by our distributed applied ML infrastructure. Our models process over 450 million real-time feature lookups per hour, driving measurable lifts in customer lifetime value, engagement conversion, and content satisfaction across web and mobile surfaces.
+
+The Opportunity
+We are looking for a Senior Machine Learning Engineer to bridge the gap between applied algorithmic research and industrial-scale production deployment. In this role, you will take deep neural ranking, multi-task learning, and collaborative filtering models from initial prototype in Jupyter notebooks all the way to containerized, low-latency microservices serving real-time predictions. You will partner closely with data engineers, product managers, and backend platform teams to formulate machine learning solutions, curate high-fidelity training data, systematically track algorithmic experiments, and continuously optimize offline metrics alongside online A/B testing lift.
+
+Key Responsibilities & What You'll Do
+- Design, train, fine-tune, and evaluate deep learning architectures (Two-Tower models, sequential transformers, deep ranking networks) using PyTorch for real-time recommendation and search personalization.
+- Develop, benchmark, and deploy tabular feature baselines and classical machine learning models (gradient-boosted trees, logistic regression, matrix factorization) utilizing scikit-learn and LightGBM/XGBoost.
+- Write complex analytical SQL queries and transformations across multi-terabyte data warehouse tables (Snowflake, BigQuery, or Amazon Redshift) to extract raw event logs, engineer predictive features, and construct gold-standard offline training cohorts.
+- Standardize end-to-end model experiment tracking, parameter versioning, metric comparison, and artifact staging through MLflow, maintaining an audit-ready Model Registry across all production stages.
+- Package machine learning training pipelines, evaluation runners, and inference microservices into production-ready Docker containers with optimized runtime dependencies.
+- Collaborate with platform and MLOps engineers to deploy containerized models to scalable serving endpoints, enforcing sub-25 millisecond p99 latency SLAs.
+- Build continuous offline evaluation harnesses and partner with growth product teams to design, launch, and interpret statistical significance in online randomized controlled trials (A/B testing).
+- Monitor deployed models in production for covariate feature drift, concept drift, and performance degradation, establishing automated alerting and retraining triggers.
+
+Minimum Qualifications & What We Are Looking For
+- 4+ years of professional experience as a Machine Learning Engineer or Applied Scientist building and deploying production-grade ML models at scale.
+- Python: Strong software engineering fundamentals in Python, including object-oriented modular design, vectorized numerical computing (NumPy, Pandas), automated testing with pytest, and adherence to clean code standards.
+- PyTorch: Extensive hands-on experience designing, training, profiling, and debugging neural networks using PyTorch, including custom dataset loaders, loss functions, GPU acceleration, and checkpointing.
+- scikit-learn: Deep working knowledge of scikit-learn for end-to-end pipeline creation, feature preprocessing (imputation, scaling, one-hot encoding), cross-validation, hyperparameter grid search, and rigorous model evaluation (ROC-AUC, PR-AUC, F1, Log Loss).
+- SQL: Advanced proficiency in SQL for relational and analytical warehouses, including complex multi-table joins, analytical window functions, common table expressions (CTEs), and query execution plan optimization.
+- MLflow: Demonstrated practical experience with MLflow (or equivalent platforms like Weights & Biases / Neptune) for structured experiment tracking, run logging, artifact management, and Model Registry lifecycle management.
+- Docker: Practical experience containerizing machine learning applications and inference services using Docker, ensuring reproducible build environments across local testing and cloud clusters.
+- Demonstrated ability to communicate technical machine learning concepts, trade-offs, and experimental findings clearly to both engineering peers and non-technical business partners.
+
+Preferred / Nice-to-Have Qualifications
+- Experience with real-time inference frameworks (FastAPI, Triton Inference Server, TorchScript, ONNX Runtime).
+- Familiarity with distributed data processing systems like Apache Spark, Ray, or Databricks.
+- Working knowledge of workflow orchestrators (Apache Airflow, Prefect, Kubeflow, Argo Workflows).
+- Experience with vector databases, dense semantic embeddings, and approximate nearest neighbor (ANN) search algorithms (FAISS, Milvus, Qdrant).

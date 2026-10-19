@@ -1,0 +1,34 @@
+Enterprise Account Executive - Strategic Accounts (B2B Enterprise SaaS)
+Databricks / Snowflake / Enterprise Cloud Benchmark Equivalent | New York, NY / Remote | Full-Time
+
+About the Company & Sales Organization
+We provide an enterprise-grade AI data intelligence and governance platform trusted by over 1,200 Global 2000 organizations to secure, automate, and orchestrate their mission-critical data assets. Having surpassed $180M in Annual Recurring Revenue (ARR) with 65% year-over-year organic growth, we are aggressively expanding our North American Strategic Accounts organization. Our sales culture is built on deep domain consultative selling, disciplined pipeline execution, customer business value realization, and collaborative account orchestration alongside dedicated Sales Engineering, Customer Success, and Executive leadership.
+
+The Opportunity
+We are looking for an exceptional, quota-carrying Enterprise Account Executive to drive net-new enterprise software revenue across Fortune 500 and Global 2000 strategic accounts. In this role, you will quarterback complex, multi-threaded commercial sales campaigns from target account identification and C-suite outbound prospecting all the way to multi-stakeholder consensus, procurement navigation, and executed enterprise master agreements. Your deal sizes will typically range from $150,000 to over $1,000,000+ in annual contract value (ACV), involving consultative engagements with Chief Information Officers (CIOs), Chief Information Security Officers (CISOs), Chief Data Officers (CDOs), and VP-level engineering leadership.
+
+Key Responsibilities & What You'll Do
+- Execute a targeted, account-based outbound prospecting strategy into assigned named enterprise accounts, leveraging executive cold outreach, customized digital messaging, strategic referral networks, and personalized account research to generate qualified net-new opportunities.
+- Systematically qualify every prospective enterprise engagement using the MEDDICC (or MEDDPICC) framework, rigorously verifying Metrics, Economic Buyer access, Decision Criteria, Decision Process, Identified Pain, Champion strength, and Competition at each sales stage.
+- Manage an active, disciplined enterprise pipeline of 15 to 30 strategic opportunities, driving deals through discovery, solution validation, technical proof of concept (POC), executive business case presentation, and commercial procurement.
+- Maintain impeccable CRM hygiene in Salesforce, ensuring that opportunity milestones, stakeholder contact mapping, close dates, next steps, and stage-by-stage deal amounts reflect real-time operational truth.
+- Deliver highly predictable quarterly and annual sales forecasts to regional sales leadership and executive management, defending deal commitments, pipeline coverage ratios, and slip risks during weekly pipeline inspection reviews.
+- Lead high-stakes commercial and legal contract negotiations, partnering closely with internal legal, finance, and info-sec teams to structure multi-year software licensing terms, master services agreements (MSAs), data processing addenda (DPAs), and pricing schedules.
+- Orchestrate cross-functional account teams—including dedicated Sales Engineers (SEs), Enterprise SDRs, Professional Services consultants, and Customer Success Managers—to demonstrate measurable return on investment (ROI) to customer steering committees.
+
+Minimum Qualifications & What We Are Looking For
+- 4 to 8+ years of quota-carrying direct B2B enterprise software sales experience selling complex cloud infrastructure, data platform, cybersecurity, or enterprise workflow software.
+- Documented track record of meeting or exceeding an annual enterprise quota of $1.2M to $2.0M+ in net-new ARR, with a history of closing six-figure and seven-figure multi-year enterprise contracts.
+- Salesforce: Advanced proficiency utilizing Salesforce CRM as the core operational operating system for opportunity management, account hierarchy mapping, activity tracking, executive reporting, and dashboard generation.
+- Outbound Prospecting: Proven capability to self-generate at least 40–50% of your own qualified pipeline through disciplined, creative outbound prospecting, cold outreach sequences, and multi-threaded stakeholder penetration.
+- Pipeline Management: Demonstrated discipline in managing complex, multi-stage sales cycles spanning 4 to 9 months with 8+ stakeholder personas involved across business, IT, security, and procurement.
+- MEDDICC / MEDDPICC: Expert command and daily habit of applying MEDDICC methodology to qualify opportunities, assess champion viability, navigate decision processes, and mitigate deal slippage.
+- Contract Negotiation: Proven expertise leading end-to-end commercial, legal, and procurement negotiations with enterprise procurement departments, vendor management offices (VMOs), and corporate legal teams.
+- Sales Forecasting: Proven ability to provide accurate, transparent sales forecasts with tight variance tolerances (within ±5–10% of quarterly commit) and deep command of deal mechanics.
+- Exceptional executive presence, verbal communication, and written storytelling abilities tailored to C-level stakeholders.
+
+Preferred / Nice-to-Have Qualifications
+- Experience selling data platforms, analytics, machine learning, cloud infrastructure, or cybersecurity software.
+- Familiarity with modern enterprise sales tech stacks (Gong.io, Outreach, Salesloft, LinkedIn Sales Navigator, ZoomInfo).
+- Established relationship networks within Fortune 500 Financial Services, Healthcare, Retail, or Technology verticals.
+- Bachelor's degree in Business, Communications, Computer Science, or equivalent practical enterprise sales experience.
