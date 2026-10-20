@@ -1,10 +1,10 @@
 <div align="center">
 
 <p align="center">
-  <img src="https://www.trykriu.com/assets/kriu-logo.svg" alt="Kriu Logo" width="220" />
+  <img src="https://www.trykriu.com/assets/kriu-logo.svg" alt="Kriu Logo" width="320" />
 </p>
 
-# Kriu
+
 ### The Deep Verification & Evaluation Intelligence Platform for Modern Engineering Teams
 
 [![Evaluation Status](https://img.shields.io/badge/Benchmark-Empirical%20v0.3-brightgreen)]()
