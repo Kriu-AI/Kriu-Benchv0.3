@@ -2,208 +2,208 @@
   "benchmark_suite_version": "Kriu-Bench-v0.3-Empirical",
   "benchmark_role": "BE (Senior Backend Engineer)",
   "evaluation_scope": {
-    "total_ingested": 100,
+    "total_ingested": 300,
     "filter_ratio": 0.5,
-    "evaluated_candidates": 50,
+    "evaluated_candidates": 300,
     "cohort_breakdown": {
-      "A1_Production_Leaders": 7,
-      "A2_Junior_Exposure": 3,
-      "C2_Plain_Builders": 10,
-      "E_Traps_and_Negations": 14,
-      "I_Counterfactual_Fairness": 16
+      "A1_Production_Leaders": 30,
+      "A2_Junior_Exposure": 30,
+      "C2_Plain_Builders": 30,
+      "E_Traps_and_Negations": 40,
+      "I_Counterfactual_Fairness": 100
     }
   },
   "benchmarks": {
     "benchmark_1_coarse_filter_efficacy": {
       "role": "BE",
-      "total_resumes_ingested": 100,
+      "total_resumes_ingested": 300,
       "coarse_filter_cutoff": 0.5,
-      "candidates_retained": 50,
-      "gold_a1_total": 10,
-      "gold_a1_retained": 7,
-      "gold_recall_pct": 70.0,
+      "candidates_retained": 60,
+      "gold_a1_total": 30,
+      "gold_a1_retained": 22,
+      "gold_recall_pct": 73.33,
       "gold_recall_95ci": [
-        39.68,
-        89.22
+        55.55,
+        85.82
       ],
-      "adversarial_stuffers_total": 20,
+      "adversarial_stuffers_total": 40,
       "adversarial_stuffers_leaked": 0,
       "stuffer_leakage_pct": 0.0,
       "stuffer_leakage_95ci": [
         0.0,
-        7.13
+        6.02
       ]
     },
     "benchmark_2_ranking_quality_and_utility": {
       "stage1": {
-        "ndcg_at_10": 0.9028,
-        "ndcg_at_5": 0.8062,
-        "mrr": 0.5,
-        "spearman_rho": 0.203,
-        "kendall_tau": 0.3127
+        "ndcg_at_10": 0.4286,
+        "ndcg_at_5": 0.4286,
+        "mrr": 0.0417,
+        "spearman_rho": 0.3403,
+        "kendall_tau": 0.3221
       },
       "stage2": {
-        "ndcg_at_10": 0.9028,
-        "ndcg_at_5": 0.8062,
-        "mrr": 0.5,
-        "spearman_rho": 0.3422,
-        "kendall_tau": 0.4188
+        "ndcg_at_10": 0.4286,
+        "ndcg_at_5": 0.4286,
+        "mrr": 0.0417,
+        "spearman_rho": 0.3263,
+        "kendall_tau": 0.3088
       },
       "correlation_lift_stage1_to_stage2": {
-        "spearman_rho_lift_pct": 68.57,
-        "kendall_tau_lift_pct": 33.93
+        "spearman_rho_lift_pct": -4.11,
+        "kendall_tau_lift_pct": -4.13
       }
     },
     "benchmark_3_skill_evidence_classification": {
-      "total_claims_evaluated": 300,
-      "macro_f1": 0.8039,
+      "total_claims_evaluated": 1800,
+      "macro_f1": 0.6097,
       "confusion_matrix": {
         "Resume-Demonstrated": {
-          "Resume-Demonstrated": 219,
-          "Not Found": 7,
-          "Resume-Mentioned": 14
+          "Resume-Demonstrated": 810,
+          "Resume-Mentioned": 104,
+          "Not Found": 56
         },
         "Resume-Mentioned": {
-          "Resume-Demonstrated": 12,
-          "Resume-Mentioned": 22,
-          "Not Found": 0
+          "Resume-Demonstrated": 180,
+          "Resume-Mentioned": 241,
+          "Not Found": 219
         },
         "Not Found": {
-          "Not Found": 25,
-          "Resume-Mentioned": 1,
-          "Resume-Demonstrated": 0
+          "Resume-Demonstrated": 22,
+          "Not Found": 165,
+          "Resume-Mentioned": 3
         }
       },
       "classes": {
         "Resume-Demonstrated": {
-          "tp": 219,
-          "fp": 12,
-          "fn": 21,
-          "precision_pct": 94.81,
+          "tp": 810,
+          "fp": 202,
+          "fn": 160,
+          "precision_pct": 80.04,
           "precision_95ci": [
-            91.14,
-            97.0
+            77.47,
+            82.39
           ],
-          "recall_pct": 91.25,
+          "recall_pct": 83.51,
           "recall_95ci": [
-            86.99,
-            94.21
+            81.04,
+            85.71
           ],
-          "f1": 0.9299
+          "f1": 0.8174
         },
         "Resume-Mentioned": {
-          "tp": 22,
-          "fp": 15,
-          "fn": 12,
-          "precision_pct": 59.46,
+          "tp": 241,
+          "fp": 107,
+          "fn": 399,
+          "precision_pct": 69.25,
           "precision_95ci": [
-            43.49,
-            73.65
+            64.22,
+            73.87
           ],
-          "recall_pct": 64.71,
+          "recall_pct": 37.66,
           "recall_95ci": [
-            47.91,
-            78.51
+            33.99,
+            41.47
           ],
-          "f1": 0.6197
+          "f1": 0.4879
         },
         "Not Found": {
-          "tp": 25,
-          "fp": 7,
-          "fn": 1,
-          "precision_pct": 78.12,
+          "tp": 165,
+          "fp": 275,
+          "fn": 25,
+          "precision_pct": 37.5,
           "precision_95ci": [
-            61.25,
-            88.98
+            33.1,
+            42.11
           ],
-          "recall_pct": 96.15,
+          "recall_pct": 86.84,
           "recall_95ci": [
-            81.11,
-            99.32
+            81.3,
+            90.93
           ],
-          "f1": 0.8621
+          "f1": 0.5238
         }
       }
     },
     "benchmark_4_execution_vs_exposure": {
-      "mean_score_a1_production": 95.0,
-      "mean_score_a2_exposure": 70.89,
-      "score_separation_margin": 24.11,
-      "evaluated_a1_candidates": 7,
-      "evaluated_a2_candidates": 3,
-      "a2_claim_false_promotion_rate_pct": 66.67,
+      "mean_score_a1_production": 77.37,
+      "mean_score_a2_exposure": 58.37,
+      "score_separation_margin": 19.0,
+      "evaluated_a1_candidates": 30,
+      "evaluated_a2_candidates": 30,
+      "a2_claim_false_promotion_rate_pct": 51.11,
       "a2_claim_false_promotion_95ci": [
-        43.75,
-        83.72
+        43.86,
+        58.31
       ],
-      "a1_claim_execution_retention_rate_pct": 100.0,
+      "a1_claim_execution_retention_rate_pct": 73.33,
       "a1_claim_execution_retention_95ci": [
-        91.62,
-        100.0
+        66.43,
+        79.26
       ]
     },
     "benchmark_5_adversarial_trap_defense": {
       "cat_b_stuffing_coarse_rejection_rate_pct": 100.0,
       "cat_b_rejection_95ci": [
-        83.89,
+        91.24,
         100.0
       ],
-      "cat_c2_plain_builder_mean_score": 94.58,
-      "cat_c2_builders_retained_count": 10,
+      "cat_c2_plain_builder_mean_score": 77.42,
+      "cat_c2_builders_retained_count": 30,
       "cat_c1_fluff_retained_count": 0,
-      "cat_e_trap_candidates_evaluated": 14,
-      "cat_e_traps_defended_score_under_80": 10,
-      "cat_e_trap_defense_rate_pct": 71.43,
+      "cat_e_trap_candidates_evaluated": 40,
+      "cat_e_traps_defended_score_under_80": 30,
+      "cat_e_trap_defense_rate_pct": 75.0,
       "cat_e_defense_95ci": [
-        45.35,
-        88.28
+        59.81,
+        85.81
       ]
     },
     "benchmark_6_counterfactual_fairness": {
-      "total_counterfactual_quartets": 4,
-      "total_resumes_in_quartets": 16,
-      "max_intra_quartet_score_spread_delta": 1.66,
-      "mean_intra_quartet_score_spread": 0.41,
+      "total_counterfactual_quartets": 25,
+      "total_resumes_in_quartets": 100,
+      "max_intra_quartet_score_spread_delta": 2.59,
+      "mean_intra_quartet_score_spread": 0.1,
       "demographic_decision_flip_rate_pct": 0.0
     },
     "benchmark_7_verbatim_evidence_grounding": {
-      "total_evidence_chunks_evaluated": 265,
-      "exact_substring_match_pct": 66.42,
+      "total_evidence_chunks_evaluated": 1300,
+      "exact_substring_match_pct": 53.54,
       "exact_substring_95ci": [
-        60.53,
-        71.83
+        50.82,
+        56.24
       ],
-      "high_fidelity_token_overlap_ge_90_pct": 80.75,
+      "high_fidelity_token_overlap_ge_90_pct": 90.15,
       "high_fidelity_token_overlap_95ci": [
-        75.58,
-        85.05
+        88.41,
+        91.66
       ],
-      "semantic_chunk_containment_ge_75_pct": 99.62,
+      "semantic_chunk_containment_ge_75_pct": 99.77,
       "semantic_chunk_containment_95ci": [
-        97.89,
-        99.93
+        99.32,
+        99.92
       ],
       "null_evidence_violations": 0,
       "null_contract_compliance_pct": 100.0
     },
     "benchmark_8_explanation_consistency": {
-      "total_explanations_evaluated": 50,
+      "total_explanations_evaluated": 300,
       "numerical_driver_fidelity_pct": 100.0,
       "numerical_driver_fidelity_95ci": [
-        92.87,
+        98.74,
         100.0
       ],
       "entity_polarity_alignment_pct": 100.0,
       "entity_polarity_alignment_95ci": [
-        92.87,
+        98.74,
         100.0
       ]
     },
     "benchmark_9_proof_brief_faithfulness": {
-      "total_proof_briefs_evaluated": 50,
+      "total_proof_briefs_evaluated": 300,
       "five_sentence_contract_compliance_pct": 100.0,
       "five_sentence_contract_95ci": [
-        92.87,
+        98.74,
         100.0
       ],
       "trust_score_numerical_fidelity_pct": 100.0,
@@ -211,30 +211,30 @@
       "gap_count_numerical_fidelity_pct": 100.0
     },
     "benchmark_10_grill_precision_and_lift": {
-      "grill_gap_hit_rate_at_k_pct": 87.97,
+      "grill_gap_hit_rate_at_k_pct": 85.48,
       "grill_gap_hit_rate_95ci": [
-        81.35,
-        92.46
+        82.49,
+        88.04
       ],
       "grill_field_completeness_pct": 100.0,
-      "total_grill_questions_evaluated": 117,
+      "total_grill_questions_evaluated": 600,
       "stage1_to_stage2_lift": {
         "a1_production_leader_s1_vs_s2": {
-          "s1": 95.0,
-          "s2": 98.33,
-          "delta": 3.33
+          "s1": 77.37,
+          "s2": 79.28,
+          "delta": 1.91
         },
         "a2_exposure_junior_s1_vs_s2": {
-          "s1": 70.89,
-          "s2": 71.72,
-          "delta": 0.83
+          "s1": 58.37,
+          "s2": 59.31,
+          "delta": 0.94
         },
         "c2_plain_builder_s1_vs_s2": {
-          "s1": 94.58,
-          "s2": 98.0,
-          "delta": 3.42
+          "s1": 77.42,
+          "s2": 77.42,
+          "delta": 0.0
         },
-        "humble_builder_score_gain": 3.42
+        "humble_builder_score_gain": 0.0
       }
     }
   }
