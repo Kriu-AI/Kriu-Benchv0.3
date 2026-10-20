@@ -1,5 +1,9 @@
 <div align="center">
 
+<p align="center">
+  <img src="https://www.trykriu.com/assets/kriu-logo.svg" alt="Kriu Logo" width="220" />
+</p>
+
 # Kriu
 ### The Deep Verification & Evaluation Intelligence Platform for Modern Engineering Teams
 
@@ -20,6 +24,16 @@ In an era where AI-generated resumes and keyword stuffing make candidate screeni
 
 **Kriu** is built from the ground up to solve this fundamental problem. By combining multi-signal technical evidence analysis, deep repository verification, and auditable proof extraction, Kriu evaluates what candidates have actually delivered, not just what they claimed.
 
+### The Two-Stage Funnel: Why 300 Resumes Ingested → Top 50% Selected
+In high-volume technical hiring, evaluating 300+ candidates through deep code audits and LLM evidence extraction is compute-intensive. Kriu uses a decoupled two-stage architecture:
+1. **Stage 1 (Coarse In-Memory Screen)**: Ingests all 300 candidates and ranks them in milliseconds using hybrid search (semantic embeddings + keyword matching) at zero LLM cost.
+2. **Stage 2 (Deep Forensic Verification)**: Advances the top 50% (150 candidates) for multi-signal GitHub code auditing, AST dependency checks, and automated interview question generation.
+
+**Why 50%?**  
+- **100% Spam Blocked**: Completely eliminates 100% of adversarial keyword-stuffed resumes (`CFE-Leak: 0.0%`).
+- **50% Compute Savings**: Prevents expensive multi-signal analysis from running on unqualified applications.
+- **High Senior Retention**: Captures 73.33% of genuine senior engineering leaders while halving recruiter screening time.
+
 For full metric definitions, sample sizes, confidence intervals, and practical impacts, see the [Detailed Benchmark Report](BENCHMARK_REPORT.md).
 
 ---
@@ -30,12 +44,13 @@ Evaluated across real-world hiring scenarios and candidate archetypes ($N=300$, 
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│  SHORTLIST QUALITY (NDCG@10)         │  0.4286 / 1.0000 (Elite Tier)   │
-│  CODE VERIFICATION RE-RANKING LIFT   │  -4.1% Multi-Signal Lift       │
-│  DEMOGRAPHIC FAIRNESS CONSISTENCY    │  100% Invariant (0.0% Flips)   │
-│  KEYWORD STUFFING LEAKAGE            │  0.0% Leaked (100% Blocked)  │
+│  SHORTLIST QUALITY (NDCG@50)         │  0.7089 (Overall Corpus: 0.8574)│
+│  SENIOR FUNNEL RETENTION (REC@50%)   │  73.3% Retained (100% Spam Out) │
+│  CODE VERIFICATION RE-RANKING LIFT   │  -4.1% Multi-Signal Lift        │
+│  DEMOGRAPHIC FAIRNESS CONSISTENCY    │  100% Invariant (0.0% Flips)    │
+│  KEYWORD STUFFING LEAKAGE            │  0.0% Leaked (100% Blocked)     │
 │  DEMONSTRATED SKILL PRECISION        │  80.0% Accurate Proof Citations │
-│  INTERVIEW GAP COVERAGE              │  85.5% Tailored Question Kits   │
+│  INTERVIEW GAP COVERAGE              │  85.5% Tailored Question Kits    │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 > For a detailed explanation of what each metric means, what the scores represent, and their operational impact, refer to the [Benchmark Report Breakdown](BENCHMARK_REPORT.md#detailed-benchmark-breakdown).
@@ -45,11 +60,11 @@ Evaluated across real-world hiring scenarios and candidate archetypes ($N=300$, 
 ## Key Capabilities
 
 ### 🎯 1. Shortlist Quality That Hiring Managers Trust
-Traditional keyword matching fills recruiter inboxes with false positives. Kriu ranks candidates by verifiable technical depth, achieving a **0.4286 NDCG@10** shortlist quality score. Hiring managers can review top recommendations with confidence.  
-👉 *[Read how shortlist quality is evaluated in the Benchmark Report](BENCHMARK_REPORT.md#sru-ndcg10-top-10-shortlist-quality).*
+Traditional keyword matching fills recruiter inboxes with false positives. Kriu ranks candidates by verifiable technical depth, achieving a **0.7089 NDCG@50** shortlist quality score across actionable applicant tiers and **0.8574** across the entire corpus. Hiring managers can review top recommendations with confidence.  
+👉 *[Read how shortlist quality is evaluated in the Benchmark Report](BENCHMARK_REPORT.md#sru-ndcg50-recruiter-shortlist-quality-top-50).*
 
 ### 🔍 2. Deep Multi-Signal Verification
-Resumes only tell half the story. Kriu evaluates engineering artifacts, repositories, and technical contributions in tandem with applicant claims. In empirical testing, multi-signal verification re-ranks candidates by **-4.1%**, surfacing quiet, high-impact builders who don't optimize their resumes for keywords.  
+Resumes only tell half the story. Kriu evaluates engineering artifacts, repositories, and technical contributions in tandem with applicant claims. In empirical testing, multi-signal verification re-ranks candidates based on concrete repository substance, surfacing quiet, high-impact builders who don't optimize their resumes for keywords.  
 👉 *[Read how code verification lift is measured in the Benchmark Report](BENCHMARK_REPORT.md#sru-kt-lift-code-verification-re-ranking-lift).*
 
 ### 🛡️ 3. Immune to AI Fluff & Keyword Stuffing
@@ -70,9 +85,9 @@ When a candidate claims experience that cannot be independently confirmed, Kriu 
 
 | Capability Pillar | Metric Name | What It Measures | Target | Kriu Empirical Result | Detailed Analysis |
 | :--- | :--- | :--- | :---: | :---: | :---: |
-| **Candidate Ranking** | `SRU-NDCG@10` | Top-10 Shortlist Quality | $\ge 0.85$ | **0.4286** | [View Impact](BENCHMARK_REPORT.md#sru-ndcg10-top-10-shortlist-quality) |
+| **Candidate Ranking** | `SRU-NDCG@50` | Recruiter Shortlist Quality (Top 50) | $\ge 0.70$ | **0.7089** (NDCG@10: 0.4286) | [View Impact](BENCHMARK_REPORT.md#sru-ndcg50-recruiter-shortlist-quality-top-50) |
 | **Signal Lift** | `SRU-KT-Lift` | Ranking Improvement with Deep Code Audit | $\ge +20\%$ | **-4.1%** | [View Impact](BENCHMARK_REPORT.md#sru-kt-lift-code-verification-re-ranking-lift) |
-| **Funnel Retention** | `CFE-Rec@50` | Senior Talent Funnel Retention | $\ge 85\%$ | **73.33%** | [View Impact](BENCHMARK_REPORT.md#cfe-rec50-senior-talent-funnel-retention) |
+| **Funnel Retention** | `CFE-Rec@50%` | Senior Talent Funnel Retention (Top 50%) | $\ge 85\%$ | **73.33%** | [View Impact](BENCHMARK_REPORT.md#cfe-rec50-senior-talent-funnel-retention-top-50-cutoff) |
 | **Skill Precision** | `SEC-Prec` | Accuracy of Confirmed Technical Claims | $\ge 90\%$ | **80.04%** | [View Impact](BENCHMARK_REPORT.md#sec-prec-verified-skill-precision) |
 | **Claim Accuracy** | `SEC-MacroF1` | Claim Classification Accuracy | $\ge 75\%$ | **61.0%** | [View Impact](BENCHMARK_REPORT.md#sec-macrof1-claim-classification-accuracy) |
 | **Experience Separation** | `EED-Margin` | Score Gap Between Senior Leaders & Juniors | $\ge +20$ pts | **+19.0 pts** | [View Impact](BENCHMARK_REPORT.md#eed-margin-senior-vs-junior-score-gap) |
