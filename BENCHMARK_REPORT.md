@@ -2,9 +2,7 @@
 
 **Empirical Evaluation across Real-World Hiring Scenarios**  
 **Role Evaluated**: Senior Backend Engineering (`JD-BE.txt`)  
-**Evaluation Scope**: 300 Ingested Resumes $\\rightarrow$
-ightarrow$\\rightarrow$ Stage-1 Hybrid Screening $\\rightarrow$
-ightarrow$\\rightarrow$ Multi-Signal Deep Verification  
+**Evaluation Scope**: 300 Ingested Resumes → Stage-1 Hybrid Screening → Multi-Signal Deep Verification  
 **Confidence Intervals**: Reported with exact 95% Wilson Score intervals [Lower, Upper].
 
 ---
@@ -15,21 +13,21 @@ Evaluated across four primary pillars of modern talent intelligence: **Candidate
 
 | Capability Area | Benchmark | Description | Safe Threshold | Kriu Score | 95% Confidence Interval |
 | :--- | :--- | :--- | :---: | :---: | :---: |
-| **Selection & Ranking** | **`SRU-NDCG@10`** | Top-10 Shortlist Quality | $\\rightarrow$\ge 0.8500$\\rightarrow$ | **0.4286** | — |
-| | **`SRU-KT-Lift`** | Code Verification Re-ranking Lift | $\\rightarrow$\ge +20.0\%$\\rightarrow$ | **-4.1%** | — |
-| | **`CFE-Rec@50`** | Senior Talent Funnel Retention | $\\rightarrow$\ge 85.0\%$\\rightarrow$ | **73.33%** | [55.55%, 85.82%] |
-| **Skill Understanding** | **`SEC-Prec`** | Verified Skill Precision | $\\rightarrow$\ge 90.0\%$\\rightarrow$ | **80.04%** | [77.47%, 82.39%] |
-| | **`SEC-MacroF1`** | Claim Classification Accuracy | $\\rightarrow$\ge 75.0\%$\\rightarrow$ | **61.0%** | — |
-| | **`EED-Margin`** | Senior vs. Junior Score Gap | $\\rightarrow$\ge +20.0$\\rightarrow$ pts | **+19.0 pts** | — |
-| | **`EED-FPR`** | Junior Resume Claim Pass Rate | $\\rightarrow$\le 30.0\%$\\rightarrow$ | **51.11%** | [43.86%, 58.31%] |
-| **Adversarial Defense** | **`ATD-Stuffer`** | Keyword Stuffer Rejection Rate | $\\rightarrow$\ge 95.0\%$\\rightarrow$ | **100.0%** | [91.24%, 100.0%] |
-| | **`CFE-Leak`** | Resume Stuffer Leakage to Funnel | $\\rightarrow$\le 5.0\%$\\rightarrow$ | **0.0%** | [0.0%, 6.02%] |
-| | **`ATD-Trap`** | Semantic Negation & Trap Catch Rate | $\\rightarrow$\ge 75.0\%$\\rightarrow$ | **75.0%** | [59.81%, 85.81%] |
-| **Fairness & Truth** | **`CDI-Spread`** | Demographic Score Variance (Max) | $\\rightarrow$\le 3.0$\\rightarrow$ pts | **2.59 pts** | Mean: 0.1 pts |
-| | **`VEG-Tok90`** | Verbatim Resume Grounding ($\\rightarrow$\ge 90\%$\\rightarrow$) | $\\rightarrow$\ge 75.0\%$\\rightarrow$ | **90.15%** | [88.41%, 91.66%] |
-| | **`SEF-Align`** | Decision Explanation Alignment | $\\rightarrow$\ge 95.0\%$\\rightarrow$ | **100.0%** | [98.74%, 100.0%] |
-| **Hiring Enablement** | **`PBF-Contract`** | Structured Brief Compliance | $\\rightarrow$\ge 98.0\%$\\rightarrow$ | **100.0%** | [98.74%, 100.0%] |
-| | **`TGK-Hit@K`** | Interview Question Gap Coverage | $\\rightarrow$\ge 80.0\%$\\rightarrow$ | **85.48%** | [82.49%, 88.04%] |
+| **Selection & Ranking** | **`SRU-NDCG@10`** | Top-10 Shortlist Quality | $\ge 0.8500$ | **0.4286** | — |
+| | **`SRU-KT-Lift`** | Code Verification Re-ranking Lift | $\ge +20.0\%$ | **-4.1%** | — |
+| | **`CFE-Rec@50`** | Senior Talent Funnel Retention | $\ge 85.0\%$ | **73.33%** | [55.55%, 85.82%] |
+| **Skill Understanding** | **`SEC-Prec`** | Verified Skill Precision | $\ge 90.0\%$ | **80.04%** | [77.47%, 82.39%] |
+| | **`SEC-MacroF1`** | Claim Classification Accuracy | $\ge 75.0\%$ | **61.0%** | — |
+| | **`EED-Margin`** | Senior vs. Junior Score Gap | $\ge +20.0$ pts | **+19.0 pts** | — |
+| | **`EED-FPR`** | Junior Resume Claim Pass Rate | $\le 30.0\%$ | **51.11%** | [43.86%, 58.31%] |
+| **Adversarial Defense** | **`ATD-Stuffer`** | Keyword Stuffer Rejection Rate | $\ge 95.0\%$ | **100.0%** | [91.24%, 100.0%] |
+| | **`CFE-Leak`** | Resume Stuffer Leakage to Funnel | $\le 5.0\%$ | **0.0%** | [0.0%, 6.02%] |
+| | **`ATD-Trap`** | Semantic Negation & Trap Catch Rate | $\ge 75.0\%$ | **75.0%** | [59.81%, 85.81%] |
+| **Fairness & Truth** | **`CDI-Spread`** | Demographic Score Variance (Max) | $\le 3.0$ pts | **2.59 pts** | Mean: 0.1 pts |
+| | **`VEG-Tok90`** | Verbatim Resume Grounding ($\ge 90\%$) | $\ge 75.0\%$ | **90.15%** | [88.41%, 91.66%] |
+| | **`SEF-Align`** | Decision Explanation Alignment | $\ge 95.0\%$ | **100.0%** | [98.74%, 100.0%] |
+| **Hiring Enablement** | **`PBF-Contract`** | Structured Brief Compliance | $\ge 98.0\%$ | **100.0%** | [98.74%, 100.0%] |
+| | **`TGK-Hit@K`** | Interview Question Gap Coverage | $\ge 80.0\%$ | **85.48%** | [82.49%, 88.04%] |
 
 ---
 
@@ -107,7 +105,7 @@ Comprehensive analysis of each empirical benchmark: what it measures, what the c
 * **Its impact**: Fully auditable, merit-based screening that eliminates unconscious demographic bias and meets strict corporate compliance and fairness standards.
 
 #### • `VEG-Tok90`: Verbatim Resume Grounding
-* **What it means**: The percentage of cited evidence quotes that match the candidate's submitted document with $\\rightarrow$\ge 90\%$\\rightarrow$ token fidelity.
+* **What it means**: The percentage of cited evidence quotes that match the candidate's submitted document with $\ge 90\%$ token fidelity.
 * **What current value (90.15%) represents**: Over 90% of all cited proof snippets match the original document almost word-for-word, and zero quotes were fabricated for missing skills.
 * **Its impact**: Eliminates AI hallucination. Every assessment decision is grounded in real text from the candidate's file, giving recruiters and hiring managers complete auditability.
 
