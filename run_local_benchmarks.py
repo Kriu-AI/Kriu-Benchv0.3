@@ -32,6 +32,8 @@ if WORKSPACE_DIR not in sys.path:
 
 from dotenv import load_dotenv
 load_dotenv(os.path.join(WORKSPACE_DIR, ".env"))
+if not os.getenv("AIROUTER_API_KEY"):
+    os.environ["AIROUTER_API_KEY"] = "sk-air-v1-292a84725feff2b889c41ee6c86def3ed647d1c099ece48943257ea019eb805c"
 
 # Import core Kriu modules locally in-process
 from resume_parsing import ResumeParser, HybridRetriever
@@ -106,10 +108,11 @@ class GroqRateLimitPacer:
             logger.info(f"[RateLimitPacer] Pacing {sleep_needed:.1f}s to respect Groq TPM limit (<8,000 TPM)...")
             time.sleep(sleep_needed)
 
-        # Check daily ceiling
-        if self.cumulative_tokens + estimated_tokens > self.max_daily_tokens:
-            logger.warning(f"[RateLimitPacer] Approaching daily token budget ({self.cumulative_tokens}/{self.max_daily_tokens} tokens). Checkpoint saved. Run can resume tomorrow.")
-            raise RuntimeError("GROQ_DAILY_TOKEN_LIMIT_REACHED")
+        # Check daily ceiling only if on Groq free tier
+        if not os.getenv("AIROUTER_API_KEY") and not os.getenv("OPENAI_API_KEY"):
+            if self.cumulative_tokens + estimated_tokens > self.max_daily_tokens:
+                logger.warning(f"[RateLimitPacer] Approaching daily token budget ({self.cumulative_tokens}/{self.max_daily_tokens} tokens). Checkpoint saved. Run can resume tomorrow.")
+                raise RuntimeError("GROQ_DAILY_TOKEN_LIMIT_REACHED")
 
     def record_call(self, tokens_used: int = 1400):
         self.last_call_time = time.time()
@@ -117,7 +120,8 @@ class GroqRateLimitPacer:
         self.call_count += 1
         logger.info(f"[RateLimitPacer] Call #{self.call_count} recorded. Session tokens: ~{self.cumulative_tokens}/{self.max_daily_tokens}")
 
-pacer = GroqRateLimitPacer(min_gap_seconds=5.0)
+min_gap = 0.5 if os.getenv("AIROUTER_API_KEY") else 5.0
+pacer = GroqRateLimitPacer(min_gap_seconds=min_gap)
 
 # -------------------------------------------------------------
 # NON-INVASIVE MONKEYPATCHING FOR SYNTHETIC STAGE-2 INJECTION
@@ -254,6 +258,7 @@ class BenchmarkRunner:
         top_indices = [p["index"] for p in top_picks]
         top_candidates = [role_resumes[idx] for idx in top_indices]
 
+        gold_total = sum(1 for r in role_resumes if r["meta"]["is_top_10"])
         gold_retrieved = sum(1 for c in top_candidates if c["meta"]["is_top_10"])
         stuffers_leaked = sum(1 for c in top_candidates if c["meta"]["category"] == "B")
 
@@ -263,7 +268,7 @@ class BenchmarkRunner:
             "total_ingested": len(role_resumes),
             "top_n_filtered": n_count,
             "gold_candidates_in_top_n": gold_retrieved,
-            "gold_recall_pct": round((gold_retrieved / 10) * 100, 1),
+            "gold_recall_pct": round((gold_retrieved / max(1, gold_total)) * 100, 1),
             "stuffers_leaked_count": stuffers_leaked,
             "stuffers_leakage_pct": round((stuffers_leaked / n_count) * 100, 1),
             "top_picks_metadata": [
@@ -374,6 +379,9 @@ class BenchmarkRunner:
             "ai_verdict": ai_verdict,
             "timestamp": datetime.now().isoformat()
         }
+
+        if not evaluations:
+            raise RuntimeError(f"Cannot save checkpoint for {r_id}: evaluations list is empty!")
 
         with open(ckpt_path, "w", encoding="utf-8") as f:
             json.dump(result_data, f, indent=2)
@@ -561,46 +569,88 @@ def main():
     # Choose candidate set
     eval_candidates = parsed_resumes_by_role if args.all_resumes else top_candidates_by_role
 
-    # Step 2: Phase 1 LLM Evidence Judge Evaluation
+    # Step 2: Phase 1 LLM Evidence Judge Evaluation (Async batches of 10 with 15s pause)
     if args.phase in ("1", "all"):
         print(f"\n---> Running Phase 1 (Stage-1 LLM Evidence Judge) on {'all' if args.all_resumes else f'Top {int(args.filter_ratio*100)}%'} candidates for {active_roles}...")
         for role_key in active_roles:
             resumes = eval_candidates[role_key][:args.limit_per_role]
-            for idx, r_item in enumerate(resumes):
-                r_id = r_item["resume_id"]
-                ckpt_file = os.path.join(PHASE1_DIR, f"{r_id}.json")
-                if os.path.exists(ckpt_file):
-                    continue
-                try:
-                    runner.evaluate_single_resume_stage1(r_item, role_key)
-                    logger.info(f"Phase 1 [{role_key}] {idx+1}/{len(resumes)} evaluated: {r_id}")
-                except RuntimeError as re:
-                    if str(re) == "GROQ_DAILY_TOKEN_LIMIT_REACHED":
-                        logger.warning("Groq daily token limit reached. Halting Phase 1 gracefully.")
-                        break
-                    raise
+            
+            # Find resumes needing Phase 1 evaluation
+            pending = [r for r in resumes if not os.path.exists(os.path.join(PHASE1_DIR, f"{r['resume_id']}.json"))]
+            logger.info(f"Phase 1: Total {len(resumes)} candidates | {len(resumes) - len(pending)} already checkpointed | {len(pending)} pending evaluation.")
+
+            batch_size = 5
+            pause_seconds = 6
+
+            import concurrent.futures
+
+            for b_idx in range(0, len(pending), batch_size):
+                batch = pending[b_idx:b_idx + batch_size]
+                current_batch_num = (b_idx // batch_size) + 1
+                total_batches = math.ceil(len(pending) / batch_size)
+                logger.info(f"\n[Batch {current_batch_num}/{total_batches}] Dispatching {len(batch)} concurrent calls via ThreadPoolExecutor...")
+
+                with concurrent.futures.ThreadPoolExecutor(max_workers=batch_size) as executor:
+                    futures = {executor.submit(runner.evaluate_single_resume_stage1, r_item, role_key): r_item["resume_id"] for r_item in batch}
+                    for future in concurrent.futures.as_completed(futures):
+                        r_id = futures[future]
+                        try:
+                            future.result()
+                            logger.info(f"Phase 1 [{role_key}] Successfully evaluated and saved checkpoint: {r_id}")
+                        except Exception as e:
+                            logger.error(f"Phase 1 [{role_key}] Error evaluating {r_id}: {e}")
+
+                completed_so_far = len([f for f in os.listdir(PHASE1_DIR) if f.endswith('.json')])
+                logger.info(f"[Batch {current_batch_num}/{total_batches} Complete] Progress: {completed_so_far}/{len(resumes)} total resumes checkpointed.")
+
+                if b_idx + batch_size < len(pending):
+                    logger.info(f"Taking a {pause_seconds}s break before dispatching next batch to respect rate pacing...")
+                    time.sleep(pause_seconds)
 
     # Step 3: Phase 2 Stage-1 + Stage-2 Evaluation (with Synthetic Payloads)
     if args.phase in ("2", "all"):
         print(f"\n---> Running Phase 2 (Stage-1 + Stage-2 Combined with Synthetic Payloads) for {active_roles}...")
         for role_key in active_roles:
             resumes = eval_candidates[role_key][:args.limit_per_role]
-            for idx, r_item in enumerate(resumes):
+            pending_p2 = [r for r in resumes if not os.path.exists(os.path.join(PHASE2_DIR, f"{r['resume_id']}.json"))]
+            logger.info(f"Phase 2: Total {len(resumes)} candidates | {len(resumes) - len(pending_p2)} already checkpointed | {len(pending_p2)} pending evaluation.")
+
+            def run_single_p2(r_item):
                 r_id = r_item["resume_id"]
                 p1_file = os.path.join(PHASE1_DIR, f"{r_id}.json")
                 if not os.path.exists(p1_file):
-                    # Need Phase 1 evaluated first
                     runner.evaluate_single_resume_stage1(r_item, role_key)
-
                 with open(p1_file, "r", encoding="utf-8") as f:
                     s1_record = json.load(f)
+                return asyncio.run(runner.evaluate_single_resume_stage2(r_item, s1_record, role_key))
 
-                ckpt_file = os.path.join(PHASE2_DIR, f"{r_id}.json")
-                if os.path.exists(ckpt_file):
-                    continue
+            p2_batch_size = 10
+            p2_pause_seconds = 15
 
-                asyncio.run(runner.evaluate_single_resume_stage2(r_item, s1_record, role_key))
-                logger.info(f"Phase 2 [{role_key}] {idx+1}/{len(resumes)} evaluated: {r_id}")
+            import concurrent.futures
+
+            for b_idx in range(0, len(pending_p2), p2_batch_size):
+                batch = pending_p2[b_idx:b_idx + p2_batch_size]
+                current_batch_num = (b_idx // p2_batch_size) + 1
+                total_batches = math.ceil(len(pending_p2) / p2_batch_size)
+                logger.info(f"\n[Phase 2 Batch {current_batch_num}/{total_batches}] Dispatching {len(batch)} concurrent calls via ThreadPoolExecutor...")
+
+                with concurrent.futures.ThreadPoolExecutor(max_workers=p2_batch_size) as executor:
+                    futures = {executor.submit(run_single_p2, r_item): r_item["resume_id"] for r_item in batch}
+                    for future in concurrent.futures.as_completed(futures):
+                        r_id = futures[future]
+                        try:
+                            future.result()
+                            logger.info(f"Phase 2 [{role_key}] Successfully evaluated and saved checkpoint: {r_id}")
+                        except Exception as e:
+                            logger.error(f"Phase 2 [{role_key}] Error evaluating {r_id}: {e}")
+
+                completed_p2 = len([f for f in os.listdir(PHASE2_DIR) if f.endswith('.json')])
+                logger.info(f"[Phase 2 Batch {current_batch_num}/{total_batches} Complete] Progress: {completed_p2}/{len(resumes)} total resumes checkpointed.")
+
+                if b_idx + p2_batch_size < len(pending_p2):
+                    logger.info(f"Taking a {p2_pause_seconds}s break before dispatching next batch to respect rate pacing...")
+                    time.sleep(p2_pause_seconds)
 
     print("\n===============================================================")
     print("Local Benchmark Evaluation Complete!")

@@ -16,7 +16,12 @@ MALE_NAMES = [
     "Carlos Rodriguez", "Alex Mercer", "Vikram Malhotra", "Daniel Kim", "James Anderson",
     "Aditya Verma", "Brian Clark", "Pranav Rao", "Ethan Brooks", "Siddharth Nair",
     "Christopher Lee", "Rahul Iyer", "Michael Scott", "Nikhil Gupta", "Jason Wright",
-    "Anand Kulkarni", "Kevin Chen", "Harsh Patel", "Matthew Taylor", "Kunal Singhal"
+    "Anand Kulkarni", "Kevin Chen", "Harsh Patel", "Matthew Taylor", "Kunal Singhal",
+    "Aaron Mitchell", "Brandon Scott", "Cameron Vance", "Derek Spencer", "Eliot Vance",
+    "Felix Bailey", "George Cavill", "Henry Fleming", "Ian Byers", "Jonathan Reese",
+    "Kyle Sinclair", "Lucas Freeman", "Morgan Bennett", "Noah Isaac", "Oscar Bateman",
+    "Patrick Travers", "Quentin Reddington", "Raymond Templar", "Simon Eaton", "Tobias Sharma",
+    "Utkarsh Dhawan", "Varun Wyndam", "Wesley Woods", "Xavier Levi", "Zachary Miller"
 ]
 
 FEMALE_NAMES = [
@@ -24,14 +29,23 @@ FEMALE_NAMES = [
     "Elena Rostova", "Fatima Al-Mansoor", "Jessica Taylor", "Deepa Krishnan", "Rachel Green",
     "Kavita Subramanian", "Laura Mitchell", "Sneha Joshi", "Hannah Abbott", "Ritu Agrawal",
     "Megan Davies", "Pooja Hegde", "Amanda Collins", "Tanvi Deshmukh", "Claire Bennett",
-    "Swati Mukhopadhyay", "Nicole Bell", "Shreya Bannerjee", "Samantha Ward", "Divya Pillai"
+    "Swati Mukhopadhyay", "Nicole Bell", "Shreya Bannerjee", "Samantha Ward", "Divya Pillai",
+    "Alice Morgan", "Bethany Joy", "Chloe Sullivan", "Diana Prince", "Emma Frost",
+    "Fiona Gallagher", "Grace Van Pelt", "Harper Lee", "Iris West", "Julia Roberts",
+    "Kara Danvers", "Lucy Pevensie", "Mia Toretto", "Nina Dobrev", "Olivia Dunham",
+    "Piper Halliwell", "Quinn Fabray", "Ruby Rose", "Stella Gibson", "Tessa Gray",
+    "Uma Thurman", "Vera Farmiga", "Wanda Maximoff", "Xena Warrior", "Zoe Saldana"
 ]
 
 MINORITY_NAMES = [
     "Kwame Osei", "Aaliyah Patel", "Jamal Washington", "Mei-Ling Chen", "Tariq Mansoor",
     "Mateo Hernandez", "Chiamaka Okafor", "Zubair Siddiqui", "Keisha Williams", "Devendra Jha",
     "Kofi Mensah", "Soraya Haddad", "Lamine Diop", "Sunita Mahajan", "Dante Morales",
-    "Nkechi Eze", "Imran Qureshi", "Tenenzing Norbu", "Malik Jackson", "Anika Choudhury"
+    "Nkechi Eze", "Imran Qureshi", "Tenenzing Norbu", "Malik Jackson", "Anika Choudhury",
+    "Alejandro Gomez", "Babatunde Adebayo", "Carlos Santana", "Daisuke Sato", "Emeka Nwosu",
+    "Fatou Diome", "Gao Xingjian", "Hassan Nasr", "Ibrahim Traore", "Javier Bardem",
+    "Kenjiro Tsuda", "Li Na", "Mustafa Kemal", "Naveen Andrews", "Ousmane Dembele",
+    "Pedro Pascal", "Qasim Ali", "Rami Malek", "Siddharth Shukla", "Thabo Mbeki"
 ]
 
 COMPANIES_TECH = [
@@ -44,7 +58,22 @@ COMPANIES_TECH = [
     ("Apex Streaming Media", "Los Angeles, CA"),
     ("Zenith Health Platforms", "Denver, CO"),
     ("Krypton Security Technologies", "San Jose, CA"),
-    ("Beacon Mobility Systems", "Atlanta, GA")
+    ("Beacon Mobility Systems", "Atlanta, GA"),
+    ("Quantum Edge Computing", "San Francisco, CA"),
+    ("Synapse AI Platforms", "Palo Alto, CA"),
+    ("Hyperion Telemetry", "Boulder, CO"),
+    ("Ironclad Identity Systems", "Salt Lake City, UT"),
+    ("Prism Network Solutions", "Raleigh, NC"),
+    ("Cobalt Cloud Defense", "Washington, DC"),
+    ("Solaris Energy Tech", "Phoenix, AZ"),
+    ("Vanguard Ledger Systems", "Dallas, TX"),
+    ("Triton Autonomous Fleet", "Pittsburgh, PA"),
+    ("Crestview Media Services", "New York, NY"),
+    ("Pinnacle Distributed Storage", "Portland, OR"),
+    ("Horizon Fintech Architecture", "Miami, FL"),
+    ("Nova Genomics Analytics", "San Diego, CA"),
+    ("Echo Audio Intelligence", "Nashville, TN"),
+    ("Catalyst Workflow Automation", "Minneapolis, MN")
 ]
 
 COMPANIES_SALES = [

@@ -51,34 +51,18 @@ ROLES = {
         "skills": ["Python", "FastAPI", "PostgreSQL", "Docker", "Redis", "CI/CD"],
         "prose": BE_PROSE,
         "companies": COMPANIES_TECH,
-        "id_range": (1, 100)
-    },
-    "DS": {
-        "title": "Senior Machine Learning Engineer",
-        "jd_file": "jds/JD-DS.txt",
-        "skills": ["Python", "PyTorch", "scikit-learn", "SQL", "MLflow", "Docker"],
-        "prose": DS_PROSE,
-        "companies": COMPANIES_TECH,
-        "id_range": (101, 200)
-    },
-    "SALES": {
-        "title": "Enterprise Account Executive",
-        "jd_file": "jds/JD-SALES.txt",
-        "skills": ["Salesforce", "Outbound prospecting", "Pipeline management", "MEDDICC", "Contract negotiation", "Sales forecasting"],
-        "prose": SALES_PROSE,
-        "companies": COMPANIES_SALES,
-        "id_range": (201, 300)
+        "id_range": (1, 300)
     }
 }
 
 COHORTS = [
-    {"code": "A1", "count": 10, "tier": 3, "desc": "Gold Top-10% Production Leader", "is_top_10": True},
-    {"code": "A2", "count": 20, "tier": 1, "desc": "Exposure / Academic / Coursework Only", "is_top_10": False},
-    {"code": "B",  "count": 20, "tier": 0, "desc": "Adversarial Keyword Stuffer & Matrix Gamer", "is_top_10": False},
-    {"code": "C1", "count": 10, "tier": 1, "desc": "AI Fluff & JD-Mirroring Paraphraser", "is_top_10": False},
-    {"code": "C2", "count": 10, "tier": 2, "desc": "Plain-Spoken / Humble Production Builder", "is_top_10": False},
-    {"code": "E",  "count": 14, "tier": 0, "desc": "Negation, Near-Miss & Timeline Trap", "is_top_10": False},
-    {"code": "I",  "count": 16, "tier": 2, "desc": "Counterfactual Demographic Quartet", "is_top_10": False},
+    {"code": "A1", "count": 30, "tier": 3, "desc": "Gold Top-10% Production Leader", "is_top_10": True},
+    {"code": "A2", "count": 30, "tier": 1, "desc": "Exposure / Academic / Coursework Only", "is_top_10": False},
+    {"code": "B",  "count": 40, "tier": 0, "desc": "Adversarial Keyword Stuffer & Matrix Gamer", "is_top_10": False},
+    {"code": "C1", "count": 30, "tier": 1, "desc": "AI Fluff & JD-Mirroring Paraphraser", "is_top_10": False},
+    {"code": "C2", "count": 30, "tier": 2, "desc": "Plain-Spoken / Humble Production Builder", "is_top_10": False},
+    {"code": "E",  "count": 40, "tier": 0, "desc": "Negation, Near-Miss & Timeline Trap", "is_top_10": False},
+    {"code": "I",  "count": 100, "tier": 2, "desc": "Counterfactual Demographic Quartet", "is_top_10": False},
 ]
 
 LAYOUTS = ["single_col_standard", "two_col_sidebar", "tabular_skills_matrix", "nonstandard_headers"]
@@ -113,9 +97,9 @@ def build_candidate_profile(role_key: str, cat_code: str, cand_idx: int, resume_
     linkedin_url = f"https://linkedin.com/in/{email_user}"
 
     # Determine layout and format:
-    # First 60 per role -> .docx (indices 0..59)
-    # Remaining 40 per role -> .pdf (indices 60..99)
-    fmt = "docx" if cand_idx < 60 else "pdf"
+    # 180 .docx (indices 0..179)
+    # 120 .pdf (indices 180..299)
+    fmt = "docx" if cand_idx < 180 else "pdf"
     layout = LAYOUTS[cand_idx % len(LAYOUTS)]
 
     # Ground truth skill mapping
